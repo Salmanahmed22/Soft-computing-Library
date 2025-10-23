@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * A helper class to calculate all workout plan metrics in a single pass.
- * This avoids looping over the chromosome multiple times.
+ * I made it just to avoid looping over the chromosome multiple times.
  */
 
 public class WorkoutPlan {
