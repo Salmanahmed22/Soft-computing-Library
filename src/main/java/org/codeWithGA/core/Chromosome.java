@@ -49,9 +49,6 @@ public class Chromosome {
         this.fitness = fitness;
     }
 
-//    public void calculateFitness() {
-//        this.fitness = FitnessEvaluator.calculateFitness(this);
-//    }
     public void calculateFitness(FitnessEvaluator fitnessFunction, InfeasibilityHandler handler) {
         double baseFitness = fitnessFunction.calculate(this);
 

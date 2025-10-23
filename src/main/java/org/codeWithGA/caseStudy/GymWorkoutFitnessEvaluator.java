@@ -3,14 +3,14 @@ package org.codeWithGA.caseStudy;
 import org.codeWithGA.core.Chromosome;
 import org.codeWithGA.fitness.FitnessEvaluator;
 
-public class GymWorkoutFitness implements FitnessEvaluator{
+public class GymWorkoutFitnessEvaluator implements FitnessEvaluator{
     @Override
     public double calculate(Chromosome chromosome) {
         WorkoutPlan metrics = new WorkoutPlan(chromosome);
 
-        double totalReward = metrics.totalProgress;
+        double totalReward = metrics.getTotalProgress();
 
-        if (metrics.restDays >= 1 && metrics.restDays <= 2) {
+        if (metrics.getRestDays() >= 1 && metrics.getRestDays() <= 2) {
             totalReward += 10.0;
         }
 

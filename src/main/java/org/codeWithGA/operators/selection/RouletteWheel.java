@@ -10,6 +10,9 @@ import java.util.List;
 public class RouletteWheel implements Selection{
     private int numberOfNeededParents;
 
+    public RouletteWheel(int numberOfNeededParents) {
+        this.numberOfNeededParents = numberOfNeededParents;
+    }
     public void setNumberOfNeededParents(int numberOfNeededParents) {
         this.numberOfNeededParents = numberOfNeededParents;
     }
@@ -36,7 +39,7 @@ public class RouletteWheel implements Selection{
             Double randProb = Math.random();
             int i = 0;
             for (Pair<Double, Double> range : ranges){
-                // only left boundry inclusive except for the last range
+                // only left boundary inclusive except for the last range
                 if (randProb >= range.getLeft() && randProb < range.getRight()||
                         (i == ranges.size() - 1 && randProb <= range.getRight())){
                     selectedParents.add(population.get(i));

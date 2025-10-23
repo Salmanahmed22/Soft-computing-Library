@@ -15,12 +15,31 @@ public class WorkoutPlan {
     private static final double[] progress = {0.0, 10.0, 6.0, 4.0};
     private static final double[] fatigueLoad = {-5.0, 5.0, 3.0, 1.0};
 
-    public final double totalHours;
-    public final double totalProgress;
-    public final double totalFatigue;
-    public final int restDays;
-    public final int strengthDays;
+    private final double totalHours;
+    private final double totalProgress;
+    private final double totalFatigue;
+    private final int restDays;
+    private final int strengthDays;
 
+    public double getTotalHours() {
+        return totalHours;
+    }
+
+    public double getTotalProgress() {
+        return totalProgress;
+    }
+
+    public double getTotalFatigue() {
+        return totalFatigue;
+    }
+
+    public int getRestDays() {
+        return restDays;
+    }
+
+    public int getStrengthDays() {
+        return strengthDays;
+    }
 
     public WorkoutPlan(Chromosome chromosome) {
         double tempHours = 0;

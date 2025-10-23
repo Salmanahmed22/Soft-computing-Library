@@ -6,16 +6,18 @@ import java.util.Random;
 
 public class UniformMutation implements Mutation{
     private final Random random = new Random();
+    private final double mutationRate;
     private final double[] lowerBounds;
     private final double[] upperBounds;
 
-    public UniformMutation(double[] lowerBounds, double[] upperBounds) {
+    public UniformMutation(double mutationRate, double[] lowerBounds, double[] upperBounds) {
+        this.mutationRate = mutationRate;
         this.lowerBounds = lowerBounds;
         this.upperBounds = upperBounds;
     }
 
     @Override
-    public void mutate(Chromosome chromosome, double mutationRate) {
+    public void mutate(Chromosome chromosome) {
         if (!(chromosome instanceof FloatChromosome)) return;
 
         FloatChromosome floatChrom = (FloatChromosome) chromosome;
@@ -31,7 +33,6 @@ public class UniformMutation implements Mutation{
                 double deltaU = UBi - xi;
 
                 double ri1 = random.nextDouble();
-                double delta;
                 boolean goLeft = ri1 <= 0.5;
 
                 if (goLeft) {
