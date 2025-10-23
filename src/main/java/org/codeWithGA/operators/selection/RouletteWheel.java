@@ -48,11 +48,6 @@ public class RouletteWheel implements Selection{
                 i++;
             }
         }
-        // for debugging
-        for (int i = 0; i < population.size(); i++) {
-            System.out.printf("Chromosome %d: Range [%.3f - %.3f)%n", i, ranges.get(i).getLeft(), ranges.get(i).getRight());
-        }
-
         return selectedParents;
     }
 }
