@@ -39,6 +39,13 @@ public class LinguisticVariable {
     public MembershipFunction getSet(String setName) {
         return fuzzySets.get(setName);
     }
+    public double getMinValue() {
+        return minValue;
+    }
+
+    public double getMaxValue() {
+        return maxValue;
+    }
 
     // IF THE GIVEN VALUE IS OUT OF RANGE IT CLAMPS TO THE RANGE BOUNDARIES
     private double clamp(double v) {
