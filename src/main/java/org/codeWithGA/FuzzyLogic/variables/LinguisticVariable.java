@@ -2,6 +2,7 @@ package org.codeWithGA.FuzzyLogic.variables;
 
 import org.codeWithGA.FuzzyLogic.membership.MembershipFunction;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -13,7 +14,12 @@ public class LinguisticVariable {
     private double minValue,maxValue;
     private Map<String, MembershipFunction> fuzzySets;
 
-    public LinguisticVariable(String name, double minValue, double maxValue) {}
+    public LinguisticVariable(String name, double minValue, double maxValue) {
+        this.name = name;
+        this.minValue = minValue;
+        this.maxValue = maxValue;
+        fuzzySets = new HashMap<>();
+    }
 
     public void addFuzzySet(String label, MembershipFunction fuzzySet) {
         fuzzySets.put(label, fuzzySet);
