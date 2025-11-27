@@ -7,7 +7,6 @@ public class Consequent {
     private String variableName;
     private String fuzzySetName;
     private double singletonValue;
-    private boolean isMamdani;
 
     public Consequent() {}
 
@@ -15,14 +14,12 @@ public class Consequent {
     public Consequent(String variableName, String fuzzySetName) {
         this.variableName = variableName;
         this.fuzzySetName = fuzzySetName;
-        this.isMamdani = true;
     }
 
     // Constructor for Sugeno
     public Consequent(String variableName, double singletonValue) {
         this.variableName = variableName;
         this.singletonValue = singletonValue;
-        this.isMamdani = false;
     }
 
     public String getVariableName() {
@@ -39,14 +36,6 @@ public class Consequent {
 
     public void setFuzzySetName(String fuzzySet) {
         this.fuzzySetName = fuzzySet;
-    }
-
-    public boolean isMamdani() { 
-        return isMamdani; 
-    }
-
-    public void setMamdani(boolean isMamdani) { 
-        this.isMamdani = isMamdani; 
     }
 
     public double getSingletonValue() {

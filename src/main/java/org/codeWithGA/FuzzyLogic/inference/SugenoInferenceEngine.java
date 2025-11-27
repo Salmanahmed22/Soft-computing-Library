@@ -35,8 +35,6 @@ public class SugenoInferenceEngine implements FuzzyInferenceEngine {
 
         for (FuzzyRule rule : rules) {
 
-            if (rule.getConsequent().isMamdani()) continue;
-
             double w_i = rule.getFiringStrength(fuzzifiedInputs, andOp);
             double z_i = rule.getConsequent().getSingletonValue();
 
