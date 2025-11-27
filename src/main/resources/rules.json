@@ -15,8 +15,7 @@
     "consequent": {
       "variableName": "Stress",
       "fuzzySetName": "High",
-      "singletonValue": 8.0,
-      "isMamdani": true
+      "singletonValue": 8.0
     },
     "weight": 1.0,
     "enabled": true,
@@ -38,8 +37,7 @@
     "consequent": {
       "variableName": "Stress",
       "fuzzySetName": "Very_High",
-      "singletonValue": 9.5,
-      "isMamdani": true
+      "singletonValue": 9.5
     },
     "weight": 1.0,
     "enabled": true,
@@ -61,8 +59,7 @@
     "consequent": {
       "variableName": "Stress",
       "fuzzySetName": "Low",
-      "singletonValue": 3.0,
-      "isMamdani": true
+      "singletonValue": 3.0
     },
     "weight": 1.0,
     "enabled": true,
@@ -84,8 +81,7 @@
     "consequent": {
       "variableName": "Stress",
       "fuzzySetName": "Very_Low",
-      "singletonValue": 1.5,
-      "isMamdani": true
+      "singletonValue": 1.5
     },
     "weight": 1.0,
     "enabled": true,
@@ -107,8 +103,7 @@
     "consequent": {
       "variableName": "Stress",
       "fuzzySetName": "High",
-      "singletonValue": 7.5,
-      "isMamdani": true
+      "singletonValue": 7.5
     },
     "weight": 1.0,
     "enabled": true,
@@ -130,8 +125,7 @@
     "consequent": {
       "variableName": "Stress",
       "fuzzySetName": "Very_Low",
-      "singletonValue": 2.0,
-      "isMamdani": true
+      "singletonValue": 2.0
     },
     "weight": 1.0,
     "enabled": true,
@@ -153,8 +147,7 @@
     "consequent": {
       "variableName": "Stress",
       "fuzzySetName": "Very_Low",
-      "singletonValue": 2.5,
-      "isMamdani": true
+      "singletonValue": 2.5
     },
     "weight": 1.0,
     "enabled": true,
@@ -176,8 +169,7 @@
     "consequent": {
       "variableName": "Stress",
       "fuzzySetName": "Medium",
-      "singletonValue": 5.0,
-      "isMamdani": true
+      "singletonValue": 5.0
     },
     "weight": 0.9,
     "enabled": true,
@@ -199,8 +191,7 @@
     "consequent": {
       "variableName": "Stress",
       "fuzzySetName": "Very_Low",
-      "singletonValue": 2.0,
-      "isMamdani": true
+      "singletonValue": 2.0
     },
     "weight": 1.0,
     "enabled": true,
@@ -222,8 +213,7 @@
     "consequent": {
       "variableName": "Stress",
       "fuzzySetName": "Low",
-      "singletonValue": 3.5,
-      "isMamdani": true
+      "singletonValue": 3.5
     },
     "weight": 1.0,
     "enabled": true,
@@ -245,8 +235,7 @@
     "consequent": {
       "variableName": "Stress",
       "fuzzySetName": "Low",
-      "singletonValue": 3.5,
-      "isMamdani": true
+      "singletonValue": 3.5
     },
     "weight": 1.0,
     "enabled": true,
@@ -263,8 +252,7 @@
     "consequent": {
       "variableName": "Stress",
       "fuzzySetName": "Very_Low",
-      "singletonValue": 1.5,
-      "isMamdani": true
+      "singletonValue": 1.5
     },
     "weight": 1.0,
     "enabled": true,

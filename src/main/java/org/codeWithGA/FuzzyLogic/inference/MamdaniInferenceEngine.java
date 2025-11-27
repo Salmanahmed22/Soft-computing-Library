@@ -44,7 +44,6 @@ public class MamdaniInferenceEngine implements  FuzzyInferenceEngine {
         }
 
         for (FuzzyRule rule : rules) {
-            if (!rule.getConsequent().isMamdani()) continue;
 
             double firingStrength = rule.getFiringStrength(fuzzifiedInputs, andOp);
 
