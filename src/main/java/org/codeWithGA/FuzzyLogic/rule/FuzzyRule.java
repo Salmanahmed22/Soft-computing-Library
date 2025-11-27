@@ -52,9 +52,18 @@ public class FuzzyRule {
         return this;
     }
 
-    public double getFiringStrength(Map<String, Map<String, Double>> fuzzifiedInputs, Operator operator) {
-        double strength = 1.0; 
-        for (Antecedent ant : antecedents) {
+    public double getFiringStrength(Map<String, Map<String, Double>> fuzzifiedInputs, Operator andOperator) {
+        if (antecedents.isEmpty()) {
+            return weight;
+        }
+
+        // Import MaxOr for OR operations
+        org.codeWithGA.FuzzyLogic.operators.MaxOr orOperator = new org.codeWithGA.FuzzyLogic.operators.MaxOr();
+        
+        double strength = -1.0; // Use -1 as initialization to distinguish from 0.0
+        
+        for (int i = 0; i < antecedents.size(); i++) {
+            Antecedent ant = antecedents.get(i);
             String varName = ant.getVariableName();
             String setName = ant.getFuzzySetName();
 
@@ -62,8 +71,27 @@ public class FuzzyRule {
             if (setMemberships == null) continue;
 
             double membershipValue = setMemberships.getOrDefault(setName, 0.0);
-            strength = operator.operate(strength, membershipValue);
+            
+            if (i == 0) {
+                // First antecedent - initialize strength
+                strength = membershipValue;
+            } else {
+                // Check the operator before this antecedent
+                String operatorBefore = ant.getOperatorBefore();
+                if ("OR".equalsIgnoreCase(operatorBefore)) {
+                    strength = orOperator.operate(strength, membershipValue);
+                } else {
+                    // Default to AND (including when operatorBefore is "AND" or null)
+                    strength = andOperator.operate(strength, membershipValue);
+                }
+            }
         }
+        
+        // Handle case where no antecedents were processed
+        if (strength < 0.0) {
+            strength = 1.0;
+        }
+        
         return strength * weight; 
     }
 
