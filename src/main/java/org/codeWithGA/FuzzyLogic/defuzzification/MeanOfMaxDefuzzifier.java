@@ -1,5 +1,4 @@
 package org.codeWithGA.FuzzyLogic.defuzzification;
-import org.codeWithGA.FuzzyLogic.EmployeeStressLevel.Defuzzifier;
 import org.codeWithGA.FuzzyLogic.variables.LinguisticVariable;
 import java.util.ArrayList;
 import java.util.List;

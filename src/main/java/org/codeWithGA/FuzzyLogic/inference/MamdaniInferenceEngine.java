@@ -30,8 +30,9 @@ public class MamdaniInferenceEngine implements  FuzzyInferenceEngine {
         }
 
         Map<Double, Double> aggregatedOutputShape = new TreeMap<>();
-        double min = outputVar.getDomain().getMin();
-        double max = outputVar.getDomain().getMax();
+        double min = outputVar.getMinValue();
+        double max = outputVar.getMaxValue();
+
         int steps = 100;
         double stepSize = (max - min) / steps;
         for (int i = 0; i <= steps; i++) {
