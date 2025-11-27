@@ -13,6 +13,11 @@ import java.util.*;
 public class MamdaniInferenceEngine implements  FuzzyInferenceEngine {
     private AndOperator andOp = new MinAnd();
     private OrOperator orOp = new MaxOr();
+    private String defuzzMethod = "centroid"; // default
+
+    public void setDefuzzMethod(String method) {
+        this.defuzzMethod = method;
+    }
 
 
     @Override
@@ -55,8 +60,7 @@ public class MamdaniInferenceEngine implements  FuzzyInferenceEngine {
             }
         }
 
-        boolean useCentroid = true;
-        if (useCentroid) {
+        if (defuzzMethod.equals("centroid")) {
             return new CentroidDefuzzifier().defuzzify(outputVar, aggregatedOutputShape);
         } else {
             return new MeanOfMaxDefuzzifier().defuzzify(outputVar, aggregatedOutputShape);
