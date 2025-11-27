@@ -10,8 +10,8 @@ public class TrapezoidalMF implements MembershipFunction{
         this.b = b;
         this.c = c;
         this.d = d;
-
     }
+
     @Override
     public double evaluate(double x){
         if (x <= a || x >= d)
@@ -20,10 +20,20 @@ public class TrapezoidalMF implements MembershipFunction{
         else if (x >= b && x <= c)
             return 1;
 
-        else if (x < b)
-            return (x - a) / (b - a);
+        else if (x < b) {
+            double m = 1.0 / (this.b - this.a);
 
-        else // (x > c)
-            return (d - x) / (d - c);
+            double b_intercept = -m * this.a;
+
+            return m * x + b_intercept;
+        }
+
+        else { // (x > c)
+            double m = -1.0 / (this.d - this.c);
+
+            double b_intercept = 1.0 - m * this.c;
+
+            return m * x + b_intercept;
+        }
     }
 }
