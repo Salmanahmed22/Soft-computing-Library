@@ -5,14 +5,14 @@ import org.codeWithGA.FuzzyLogic.rule.FuzzyRule;
 import org.codeWithGA.FuzzyLogic.rule.RuleBaseManager;
 import org.codeWithGA.FuzzyLogic.operators.*;
 
-import org.codeWithGA.FuzzyLogic.defuzzification.Defuzzifier;
+import org.codeWithGA.FuzzyLogic.defuzzification.CentroidDefuzzifier;
+import org.codeWithGA.FuzzyLogic.defuzzification.MeanOfMaxDefuzzifier;
 import java.util.*;
 
 
 public class MamdaniInferenceEngine implements  FuzzyInferenceEngine {
     private AndOperator andOp = new MinAnd();
     private OrOperator orOp = new MaxOr();
-    private Defuzzifier defuzzifier;
 
 
     @Override
@@ -30,8 +30,8 @@ public class MamdaniInferenceEngine implements  FuzzyInferenceEngine {
         }
 
         Map<Double, Double> aggregatedOutputShape = new TreeMap<>();
-        double min = outputVar.getDomain().getMin();
-        double max = outputVar.getDomain().getMax();
+        double min = outputVar.getMinValue();
+        double max = outputVar.getMaxValue();
         int steps = 100;
         double stepSize = (max - min) / steps;
         for (int i = 0; i <= steps; i++) {
@@ -55,8 +55,13 @@ public class MamdaniInferenceEngine implements  FuzzyInferenceEngine {
             }
         }
 
-        if (defuzzifier == null) throw new IllegalStateException("Defuzzifier not set.");
-        return defuzzifier.defuzzify(outputVar, aggregatedOutputShape);
+        boolean useCentroid = true;
+        if (useCentroid) {
+            return new CentroidDefuzzifier().defuzzify(outputVar, aggregatedOutputShape);
+        } else {
+            return new MeanOfMaxDefuzzifier().defuzzify(outputVar, aggregatedOutputShape);
+        }
+
     }
 }
 

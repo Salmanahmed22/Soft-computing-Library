@@ -1,39 +1,54 @@
 package org.codeWithGA.FuzzyLogic.inference;
+
 import java.util.*;
 import org.codeWithGA.FuzzyLogic.variables.LinguisticVariable;
 import org.codeWithGA.FuzzyLogic.operators.AndOperator;
 import org.codeWithGA.FuzzyLogic.operators.MinAnd;
-
-import org.codeWithGA.FuzzyLogic.operators.*;
 import org.codeWithGA.FuzzyLogic.rule.RuleBaseManager;
 import org.codeWithGA.FuzzyLogic.rule.FuzzyRule;
-import org.codeWithGA.FuzzyLogic.defuzzification.SugenoWeightedAverage;
 
 
 //BTW I made the Zero-order
-public class SugenoInferenceEngine implements  FuzzyInferenceEngine {
-    private AndOperator andOp = new MinAnd();
-    private SugenoWeightedAverage weightedAvg = new SugenoWeightedAverage();
 
-    public void setAndOperator(AndOperator op) { this.andOp = op; }
+public class SugenoInferenceEngine implements FuzzyInferenceEngine {
+
+    private AndOperator andOp = new MinAnd();
 
     @Override
-    public double evaluate(Map<String, LinguisticVariable> inputVariables,Map<String, Double> inputValues, LinguisticVariable outputVar, RuleBaseManager ruleBase) {
+    public double evaluate(Map<String, LinguisticVariable> inputVariables,
+                           Map<String, Double> inputValues,
+                           LinguisticVariable outputVar,
+                           RuleBaseManager ruleBase) {
+
         List<FuzzyRule> rules = ruleBase.getEnabledRules();
 
-        List<Double> firingStrengths = new ArrayList<>();
-        List<Double> singletonOutputs = new ArrayList<>();
-
-        for (FuzzyRule rule : rules) {
-            if (rule.getConsequent().isMamdani()) continue;
-
-            double w_i = rule.getFiringStrength(andOp);
-            double z_i = rule.getConsequent().getSingletonValue();
-
-            firingStrengths.add(w_i);
-            singletonOutputs.add(z_i);
+        Map<String, Map<String, Double>> fuzzifiedInputs = new HashMap<>();
+        for (Map.Entry<String, Double> entry : inputValues.entrySet()) {
+            LinguisticVariable var = inputVariables.get(entry.getKey());
+            if (var != null) {
+                fuzzifiedInputs.put(var.getName(), var.fuzzify(entry.getValue()));
+            }
         }
 
-        return weightedAvg.calculate(firingStrengths, singletonOutputs);
+        double numerator = 0.0;
+        double denominator = 0.0;
+
+        for (FuzzyRule rule : rules) {
+
+            if (rule.getConsequent().isMamdani()) continue;
+
+            double w_i = rule.getFiringStrength(fuzzifiedInputs, andOp);
+            double z_i = rule.getConsequent().getSingletonValue();
+
+            numerator += w_i * z_i;
+            denominator += w_i;
+        }
+
+        if (denominator == 0.0)
+            return 0.0;
+
+        return numerator / denominator;
     }
 }
+
+
