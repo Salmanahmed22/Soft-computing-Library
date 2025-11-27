@@ -51,4 +51,17 @@ public class LinguisticVariable {
     private double clamp(double v) {
         return Math.max(minValue, Math.min(maxValue, v));
     }
+
+    public String[] getFuzzySetNames() {
+        String[] fuzzySetNames = new String[fuzzySets.size()];
+        for (int i = 0; i < fuzzySetNames.length; i++) {
+            fuzzySetNames[i] = fuzzySets.keySet().toArray()[i].toString();
+        }
+        return fuzzySetNames;
+    }
+
+    public double getMembershipValue(String setName, double val) {
+        MembershipFunction fuzzySet = getSet(setName);
+        return fuzzySet.evaluate(val);
+    }
 }
