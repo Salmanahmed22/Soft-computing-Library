@@ -1,0 +1,100 @@
+[
+  {
+    "id": "R1",
+    "antecedents": [
+      {
+        "variableName": "SleepingHours",
+        "fuzzySetName": "Low"
+      },
+      {
+        "variableName": "WorkingHours",
+        "fuzzySetName": "High"
+      }
+    ],
+    "consequent": {
+      "variableName": "Stress",
+      "fuzzySetName": "High",
+      "singletonValue": 0.0,
+      "isMamdani": true
+    },
+    "weight": 1.0,
+    "enabled": true,
+    "name": "R1"
+  },
+  {
+    "id": "R2",
+    "antecedents": [
+      {
+        "variableName": "SleepingHours",
+        "fuzzySetName": "Normal"
+      },
+      {
+        "variableName": "WorkingHours",
+        "fuzzySetName": "Moderate"
+      }
+    ],
+    "consequent": {
+      "variableName": "Stress",
+      "fuzzySetName": "Medium",
+      "singletonValue": 0.0,
+      "isMamdani": true
+    },
+    "weight": 1.0,
+    "enabled": true,
+    "name": "R2"
+  },
+  {
+    "id": "R3",
+    "antecedents": [
+      {
+        "variableName": "HealthLevel",
+        "fuzzySetName": "Good"
+      }
+    ],
+    "consequent": {
+      "variableName": "Stress",
+      "fuzzySetName": "Low",
+      "singletonValue": 0.0,
+      "isMamdani": true
+    },
+    "weight": 1.0,
+    "enabled": true,
+    "name": "R3"
+  },
+  {
+    "id": "R4",
+    "antecedents": [
+      {
+        "variableName": "SleepingHours",
+        "fuzzySetName": "Low"
+      }
+    ],
+    "consequent": {
+      "variableName": "Stress",
+      "fuzzySetName": "",
+      "singletonValue": 8.0,
+      "isMamdani": false
+    },
+    "weight": 1.0,
+    "enabled": true,
+    "name": "R4"
+  },
+  {
+    "id": "R5",
+    "antecedents": [
+      {
+        "variableName": "HealthLevel",
+        "fuzzySetName": "Good"
+      }
+    ],
+    "consequent": {
+      "variableName": "Stress",
+      "fuzzySetName": "",
+      "singletonValue": 2.0,
+      "isMamdani": false
+    },
+    "weight": 1.0,
+    "enabled": true,
+    "name": "R5"
+  }
+]

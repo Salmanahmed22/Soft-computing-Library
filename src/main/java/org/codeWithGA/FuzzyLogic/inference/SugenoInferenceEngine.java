@@ -2,7 +2,7 @@ package org.codeWithGA.FuzzyLogic.inference;
 
 import java.util.*;
 import org.codeWithGA.FuzzyLogic.variables.LinguisticVariable;
-import org.codeWithGA.FuzzyLogic.operators.AndOperator;
+import org.codeWithGA.FuzzyLogic.operators.Operator;
 import org.codeWithGA.FuzzyLogic.operators.MinAnd;
 import org.codeWithGA.FuzzyLogic.rule.RuleBaseManager;
 import org.codeWithGA.FuzzyLogic.rule.FuzzyRule;
@@ -12,7 +12,7 @@ import org.codeWithGA.FuzzyLogic.rule.FuzzyRule;
 
 public class SugenoInferenceEngine implements FuzzyInferenceEngine {
 
-    private AndOperator andOp = new MinAnd();
+    private Operator andOp = new MinAnd();
 
     @Override
     public double evaluate(Map<String, LinguisticVariable> inputVariables,

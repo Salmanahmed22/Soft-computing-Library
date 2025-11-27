@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
-import org.codeWithGA.FuzzyLogic.operators.AndOperator;
+import org.codeWithGA.FuzzyLogic.operators.Operator;
 
 
 public class FuzzyRule {
@@ -52,7 +52,7 @@ public class FuzzyRule {
         return this;
     }
 
-    public double getFiringStrength(Map<String, Map<String, Double>> fuzzifiedInputs, AndOperator andOperator) {
+    public double getFiringStrength(Map<String, Map<String, Double>> fuzzifiedInputs, Operator operator) {
         double strength = 1.0; 
         for (Antecedent ant : antecedents) {
             String varName = ant.getVariableName();
@@ -62,7 +62,7 @@ public class FuzzyRule {
             if (setMemberships == null) continue;
 
             double membershipValue = setMemberships.getOrDefault(setName, 0.0);
-            strength = andOperator.operate(strength, membershipValue);
+            strength = operator.operate(strength, membershipValue);
         }
         return strength * weight; 
     }

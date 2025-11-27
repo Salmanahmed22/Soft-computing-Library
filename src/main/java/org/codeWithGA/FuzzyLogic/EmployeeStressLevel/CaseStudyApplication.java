@@ -73,11 +73,13 @@ import org.codeWithGA.FuzzyLogic.membership.*;
 import org.codeWithGA.FuzzyLogic.rule.*;
 import org.codeWithGA.FuzzyLogic.variables.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 public class CaseStudyApplication {
 
-    public static void main(String[] args) {
+        public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
@@ -112,29 +114,13 @@ public class CaseStudyApplication {
         // -------------------------------------------------
         RuleBaseManager ruleBase = new RuleBaseManager();
 
-        // Example rules
-        ruleBase.addRule(new FuzzyRule()
-                .when("SleepingHours", "Low")
-                .and("WorkingHours", "High")
-                .then("Stress", "High"));
-
-        ruleBase.addRule(new FuzzyRule()
-                .when("SleepingHours", "Normal")
-                .and("WorkingHours", "Moderate")
-                .then("Stress", "Medium"));
-
-        ruleBase.addRule(new FuzzyRule()
-                .when("HealthLevel", "Good")
-                .then("Stress", "Low"));
-
-        // Sugeno singleton rules (example)
-        ruleBase.addRule(new FuzzyRule()
-                .when("SleepingHours", "Low")
-                .then("Stress", 8)); // crisp output
-
-        ruleBase.addRule(new FuzzyRule()
-                .when("HealthLevel", "Good")
-                .then("Stress", 2)); // crisp output
+        File file = new File("src/main/resources/rules.json");
+        try{
+                ruleBase.loadFromFile(file);
+        }
+        catch (IOException e) {
+                e.printStackTrace();
+        }
 
         // -------------------------------------------------
         // 3. Ask user for inference type
@@ -192,7 +178,8 @@ public class CaseStudyApplication {
         System.out.println("\n=============================");
         System.out.println("Final Stress Level Output = " + result);
         System.out.println("=============================");
-    }
+        sc.close();
+}
 }
 
 

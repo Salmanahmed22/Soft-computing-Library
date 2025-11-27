@@ -11,8 +11,8 @@ import java.util.*;
 
 
 public class MamdaniInferenceEngine implements  FuzzyInferenceEngine {
-    private AndOperator andOp = new MinAnd();
-    private OrOperator orOp = new MaxOr();
+    private Operator andOp = new MinAnd();
+    private Operator orOp = new MaxOr();
     private String defuzzMethod = "centroid"; // default
 
     public void setDefuzzMethod(String method) {
@@ -51,7 +51,7 @@ public class MamdaniInferenceEngine implements  FuzzyInferenceEngine {
             var fuzzySet = outputVar.getSet(rule.getConsequent().getFuzzySetName());
 
             for (Map.Entry<Double, Double> entry : aggregatedOutputShape.entrySet()) {
-               double x = entry.getKey();
+                double x = entry.getKey();
                 double originalMembership = fuzzySet.evaluate(x);
                 double impliedMembership = Math.min(originalMembership, firingStrength);
 
