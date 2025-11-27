@@ -1,4 +1,4 @@
-package org.codeWithGA.FuzzyLogic.EmployeeStressLevel;
+package org.codeWithGA.FuzzyLogic.defuzzification;
 
 import org.codeWithGA.FuzzyLogic.variables.LinguisticVariable;
 
