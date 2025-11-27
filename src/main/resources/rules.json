@@ -8,7 +8,8 @@
       },
       {
         "variableName": "WorkingHours",
-        "fuzzySetName": "High"
+        "fuzzySetName": "High",
+        "operatorBefore": "OR"
       }
     ],
     "consequent": {
@@ -17,7 +18,7 @@
       "singletonValue": 0.0,
       "isMamdani": true
     },
-    "weight": 1.0,
+    "weight": 0.8,
     "enabled": true,
     "name": "R1"
   },
@@ -30,7 +31,8 @@
       },
       {
         "variableName": "WorkingHours",
-        "fuzzySetName": "Moderate"
+        "fuzzySetName": "Moderate",
+        "operatorBefore": "AND"
       }
     ],
     "consequent": {
@@ -71,7 +73,7 @@
     ],
     "consequent": {
       "variableName": "Stress",
-      "fuzzySetName": "",
+      "fuzzySetName": "High",
       "singletonValue": 8.0,
       "isMamdani": false
     },
@@ -89,8 +91,8 @@
     ],
     "consequent": {
       "variableName": "Stress",
-      "fuzzySetName": "",
-      "singletonValue": 2.0,
+      "fuzzySetName": "Low",
+      "singletonValue": 3.0,
       "isMamdani": false
     },
     "weight": 1.0,

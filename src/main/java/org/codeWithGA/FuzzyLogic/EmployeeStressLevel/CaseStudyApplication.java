@@ -21,27 +21,36 @@ public class CaseStudyApplication {
         System.out.println("Step 1: Building Linguistic Variables...");
 
         LinguisticVariable sleepingHours = new LinguisticVariable("SleepingHours", 0, 12);
-        sleepingHours.addFuzzySet("Very_Low", new TrapezoidalMF(0, 0, 2, 4));
-        sleepingHours.addFuzzySet("Low", new TriangularMF(2, 5, 7));
+        sleepingHours.addFuzzySet("Very_Low", new TrapezoidalMF(0, 0, 3, 5));
+        sleepingHours.addFuzzySet("Low", new TriangularMF(3, 5, 7));
         sleepingHours.addFuzzySet("Normal", new TriangularMF(6, 8, 10));
         sleepingHours.addFuzzySet("High", new TrapezoidalMF(8, 10, 12, 12));
 
         LinguisticVariable workingHours = new LinguisticVariable("WorkingHours", 0, 16);
-        workingHours.addFuzzySet("Low", new TriangularMF(0, 2, 7));
+        workingHours.addFuzzySet("Low", new TriangularMF(0, 0, 6));
         workingHours.addFuzzySet("Moderate", new TriangularMF(4, 8, 12));
-        workingHours.addFuzzySet("High", new TrapezoidalMF(9, 12, 16, 16));
+        workingHours.addFuzzySet("High", new TrapezoidalMF(10, 12, 16, 16));
 
         LinguisticVariable healthLevel = new LinguisticVariable("HealthLevel", 0, 10);
         healthLevel.addFuzzySet("Poor", new TriangularMF(0, 0, 5));
         healthLevel.addFuzzySet("Average", new TriangularMF(3, 5, 7));
-        healthLevel.addFuzzySet("Good", new TriangularMF(5, 8, 10));
+        healthLevel.addFuzzySet("Good", new TriangularMF(6, 8, 10));
+        healthLevel.addFuzzySet("Excellent", new TrapezoidalMF(8, 9, 10, 10));
 
         LinguisticVariable stress = new LinguisticVariable("Stress", 0, 10);
-        stress.addFuzzySet("Low", new TriangularMF(0, 0, 5));
-        stress.addFuzzySet("Medium", new TriangularMF(3, 5, 7));
-        stress.addFuzzySet("High", new TriangularMF(5, 8, 10));
+        stress.addFuzzySet("Very_Low", new TriangularMF(0, 0, 3));
+        stress.addFuzzySet("Low", new TriangularMF(1, 3, 5));
+        stress.addFuzzySet("Medium", new TriangularMF(4, 5.5, 7));
+        stress.addFuzzySet("High", new TriangularMF(6, 8, 10));
+        stress.addFuzzySet("Very_High", new TrapezoidalMF(8, 9, 10, 10));
 
         System.out.println("Linguistic variables created successfully.\n");
+        
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         // -------------------------------------------------
         // 2. Build Rule Base
@@ -56,6 +65,13 @@ public class CaseStudyApplication {
         }
         catch (IOException e) {
                 e.printStackTrace();
+        }
+        ruleBase.getRules().forEach(r -> System.out.println(r));
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
         // -------------------------------------------------
@@ -87,6 +103,12 @@ public class CaseStudyApplication {
             engine = new SugenoInferenceEngine();
         }
 
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         // -------------------------------------------------
         // 4. Get input values
         // -------------------------------------------------
@@ -109,6 +131,12 @@ public class CaseStudyApplication {
         inputVars.put("WorkingHours", workingHours);
         inputVars.put("HealthLevel", healthLevel);
 
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         // -------------------------------------------------
         // 5. Visualize Membership Values
         // -------------------------------------------------
@@ -121,6 +149,12 @@ public class CaseStudyApplication {
                 double degree = var.getMembershipValue(setName, val);
                 System.out.printf("  %s: %.3f%n", setName, degree);
             }
+        }
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
         // -------------------------------------------------
