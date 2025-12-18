@@ -1,28 +1,36 @@
 package org.codeWithGA.NeuralNetwork.case_study;
+
 import org.codeWithGA.NeuralNetwork.data.*;
+import org.codeWithGA.NeuralNetwork.titanic.*;
+import java.util.List;
 
 public class TitanicCaseStudy {
 
     public static void main(String[] args) throws Exception {
+        System.out.println("--- Titanic Survival Prediction System ---");
 
-        // 1. Load dataset
-        DataSet data = CSVLoader.load(
-                "src/main/java/org/codeWithGA/NeuralNetwork/datasets/titanic.csv",
-                true);
+        DataSet rawData = CSVLoader.load("src/main/java/org/codeWithGA/NeuralNetwork/datasets/titanic.csv", true, 1);
 
-        // 2. Clean data
-        data = Preprocessor.removeInvalid(data);
+        DataSet cleanData = TitanicPreprocessor.prepare(rawData);
 
-        // 3. Normalize features
-        data = Normalizer.minMax(data);
+        cleanData = Preprocessor.removeInvalid(cleanData);
+        DataSet normalizedData = Normalizer.minMax(cleanData);
 
         // 4. Train / Test split
-        DataSet[] split = TrainTestSplit.split(data, 0.8, 42);
-        DataSet train = split[0];
-        DataSet test = split[1];
+        DataSet[] split = TrainTestSplit.split(normalizedData, 0.8, 42);
+        DataSet trainData = split[0];
+        DataSet testData = split[1];
 
-        // 5. Pass to Neural Network (later)
-        System.out.println("Train size: " + train.size());
-        System.out.println("Test size: " + test.size());
+        int inputFeatures = trainData.getFeatures().get(0).length;
+        TitanicModel titanicModel = new TitanicModel(inputFeatures);
+
+        System.out.println("Starting training...");
+        List<Double> lossHistory = TitanicTrainer.train(titanicModel, trainData);
+
+        TitanicEvaluator.evaluate(titanicModel, testData);
+
+        Plotter.generateLossCurve(lossHistory);
+
+        System.out.println("--- Process Complete. Check 'reports/' folder for charts. ---");
     }
 }
