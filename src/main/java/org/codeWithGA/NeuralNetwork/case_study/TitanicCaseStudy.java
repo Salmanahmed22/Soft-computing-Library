@@ -1,5 +1,5 @@
-package case_study;
-import data.*;
+package org.codeWithGA.NeuralNetwork.case_study;
+import org.codeWithGA.NeuralNetwork.data.*;
 
 public class TitanicCaseStudy {
 
