@@ -1,4 +1,4 @@
-package data;
+package org.codeWithGA.NeuralNetwork.data;
 
 import java.util.List;
 
