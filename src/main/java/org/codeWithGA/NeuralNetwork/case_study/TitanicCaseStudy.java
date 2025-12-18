@@ -1,5 +1,6 @@
-package case_study;
-import data.*;
+package org.codeWithGA.NeuralNetwork.case_study;
+
+import org.codeWithGA.NeuralNetwork.data.*;
 
 public class TitanicCaseStudy {
 
@@ -7,9 +8,8 @@ public class TitanicCaseStudy {
 
         // 1. Load dataset
         DataSet data = CSVLoader.load(
-                "titanic/datasets/titanic.csv",
-                true
-        );
+                "src/main/java/org/codeWithGA/NeuralNetwork/datasets/titanic.csv",
+                true);
 
         // 2. Clean data
         data = Preprocessor.removeInvalid(data);
