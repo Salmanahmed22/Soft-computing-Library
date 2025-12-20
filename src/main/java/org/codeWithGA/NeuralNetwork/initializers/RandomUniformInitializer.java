@@ -1,7 +1,8 @@
 package org.codeWithGA.NeuralNetwork.initializers;
 
 import java.util.Random;
-
+//when to use random form initializer?
+//for small networks
 public class RandomUniformInitializer implements WeightInitializer {
     private double limit;
     private Random random;

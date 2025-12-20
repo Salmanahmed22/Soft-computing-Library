@@ -1,5 +1,6 @@
 package org.codeWithGA.NeuralNetwork.training;
 
+import org.codeWithGA.NeuralNetwork.core.DenseLayer;
 import org.codeWithGA.NeuralNetwork.core.Layer;
 import org.codeWithGA.NeuralNetwork.core.NeuralNetwork;
 import org.codeWithGA.NeuralNetwork.losses.LossFunction;
@@ -31,7 +32,7 @@ public class Trainer {
             double epochLoss = 0.0;
             int numBatches = 0;
 
-            // Shuffle
+            // Shuffle data to prevent learning order bias
             if (config.isShuffle()) {
                 shuffle(trainX, trainY, rand);
             }
@@ -66,8 +67,8 @@ public class Trainer {
 
                 // Update - divide grads by batch size
                 for (Layer layer : network.getLayers()) {
-                    if (layer instanceof org.codeWithGA.NeuralNetwork.core.DenseLayer) {
-                        org.codeWithGA.NeuralNetwork.core.DenseLayer dl = (org.codeWithGA.NeuralNetwork.core.DenseLayer) layer;
+                    if (layer instanceof DenseLayer) {
+                        DenseLayer dl = (DenseLayer) layer;
                         if (dl.getGradW() != null) {
                             // Divide by batch size
                             for (int r = 0; r < dl.getGradW().length; r++) {

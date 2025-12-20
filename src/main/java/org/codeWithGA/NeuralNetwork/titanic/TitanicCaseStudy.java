@@ -1,7 +1,7 @@
-package org.codeWithGA.NeuralNetwork.case_study;
+package org.codeWithGA.NeuralNetwork.titanic;
 
 import org.codeWithGA.NeuralNetwork.data.*;
-import org.codeWithGA.NeuralNetwork.titanic.*;
+
 import java.util.List;
 
 public class TitanicCaseStudy {
